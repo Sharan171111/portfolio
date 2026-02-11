@@ -1,13 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
-import { 
-  Github, 
-  Linkedin, 
-  Mail, 
-  Phone, 
-  ExternalLink, 
-  Menu, 
+import {
+  Github,
+  Linkedin,
+  Mail,
+  Phone,
+  ExternalLink,
+  Menu,
   X,
   ChevronRight,
   Monitor,
@@ -18,7 +18,8 @@ import {
   Code2,
   GitBranch,
   Star,
-  ShieldCheck
+  ShieldCheck,
+  Download
 } from 'lucide-react';
 import { PROJECTS, EXPERIENCES, SKILL_CATEGORIES } from './constants';
 
@@ -37,11 +38,11 @@ const Nav = () => {
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'glass py-4 shadow-2xl' : 'py-6'}`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           className="text-2xl font-black tracking-tighter cursor-pointer"
-          onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
           SHARAN<span className="text-blue-500">.KS</span>
         </motion.div>
@@ -49,8 +50,8 @@ const Nav = () => {
         {/* Desktop Menu */}
         <div className="hidden md:flex gap-8 items-center">
           {menuItems.map((item) => (
-            <motion.a 
-              key={item} 
+            <motion.a
+              key={item}
               href={`#${item.toLowerCase()}`}
               whileHover={{ scale: 1.05 }}
               className="relative text-sm font-medium text-slate-400 hover:text-white transition-colors group"
@@ -59,7 +60,15 @@ const Nav = () => {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full" />
             </motion.a>
           ))}
-          <a 
+          <motion.a
+            href="https://drive.google.com/uc?export=download&id=1Ua1qQKpt9ec7VbKO7AaHUIqFMlHD_d5c"
+            target="_blank"
+            whileHover={{ scale: 1.05 }}
+            className="relative text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors group flex items-center gap-1"
+          >
+            Resume <Download size={14} />
+          </motion.a>
+          <a
             href="mailto:sharanks171@gmail.com"
             className="px-6 py-2.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold transition-all shadow-lg shadow-blue-900/40 transform hover:-translate-y-0.5"
           >
@@ -86,8 +95,8 @@ const Nav = () => {
           >
             <div className="flex flex-col p-8 gap-6">
               {menuItems.map((item) => (
-                <a 
-                  key={item} 
+                <a
+                  key={item}
                   href={`#${item.toLowerCase()}`}
                   onClick={() => setIsOpen(false)}
                   className="text-2xl font-black text-slate-300 hover:text-blue-400 transition-colors tracking-tight"
@@ -112,22 +121,22 @@ const Hero = () => {
   return (
     <section id="about" className="min-h-screen pt-32 pb-16 px-6 flex flex-col items-center justify-center relative overflow-hidden">
       {/* Parallax Background Blobs */}
-      <motion.div 
+      <motion.div
         style={{ y: y1 }}
-        className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] -z-10" 
+        className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] -z-10"
       />
-      <motion.div 
+      <motion.div
         style={{ y: y2 }}
-        className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[120px] -z-10" 
+        className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[120px] -z-10"
       />
 
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8 }}
         className="max-w-5xl text-center"
       >
-        <motion.span 
+        <motion.span
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
@@ -135,18 +144,18 @@ const Hero = () => {
         >
           Software Engineer & Data Strategist
         </motion.span>
-        
+
         <h1 className="text-7xl md:text-9xl font-black mb-12 leading-[0.9] tracking-tighter">
           <span className="text-gradient">SHARAN</span> K S
         </h1>
-        
+
         <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-16 leading-relaxed font-medium">
-          Information Science graduate specialized in robust software, 
+          Information Science graduate specialized in robust software,
           AI-driven applications, and high-performance data dashboards.
         </p>
 
         <div className="flex flex-wrap justify-center gap-6">
-          <motion.a 
+          <motion.a
             href="#projects"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -154,19 +163,29 @@ const Hero = () => {
           >
             Explore Projects <ArrowUpRight size={20} />
           </motion.a>
-          
+
+          <motion.a
+            href="https://drive.google.com/uc?export=download&id=1Ua1qQKpt9ec7VbKO7AaHUIqFMlHD_d5c"
+            target="_blank"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-10 py-5 rounded-2xl glass border-white/10 font-black flex items-center gap-2 hover:bg-white/10 transition-all shadow-xl"
+          >
+            Download Resume <Download size={20} />
+          </motion.a>
+
           <div className="flex gap-4">
-            <motion.a 
-              href="https://github.com/Sharan171111" 
-              target="_blank" 
+            <motion.a
+              href="https://github.com/Sharan171111"
+              target="_blank"
               whileHover={{ y: -5, backgroundColor: 'rgba(255,255,255,0.1)' }}
               className="p-5 glass rounded-2xl transition-all"
             >
               <Github size={24} />
             </motion.a>
-            <motion.a 
-              href="https://linkedin.com/in/sharan-ks" 
-              target="_blank" 
+            <motion.a
+              href="https://linkedin.com/in/sharan-ks"
+              target="_blank"
               whileHover={{ y: -5, backgroundColor: 'rgba(255,255,255,0.1)' }}
               className="p-5 glass rounded-2xl transition-all"
             >
@@ -177,7 +196,7 @@ const Hero = () => {
       </motion.div>
 
       {/* Stats Preview */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6 }}
@@ -202,12 +221,12 @@ const Hero = () => {
       </motion.div>
 
       {/* Scroll Indicator */}
-      <motion.div 
+      <motion.div
         style={{ opacity }}
         className="absolute bottom-10 flex flex-col items-center gap-4 text-slate-500"
       >
         <span className="text-[10px] font-bold uppercase tracking-widest">Scroll to explore</span>
-        <motion.div 
+        <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 1.5 }}
           className="w-6 h-10 rounded-full border-2 border-slate-700 flex justify-center p-1"
@@ -222,7 +241,7 @@ const Hero = () => {
 const Projects = () => {
   return (
     <section id="projects" className="py-32 px-6 max-w-7xl mx-auto">
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -232,8 +251,8 @@ const Projects = () => {
           <h2 className="text-5xl md:text-6xl font-black mb-6 tracking-tighter">Selected <span className="text-blue-500">Showcase</span></h2>
           <p className="text-slate-400 text-lg">Deep dives into my technical contributions from GitHub and beyond.</p>
         </div>
-        <motion.a 
-          href="https://github.com/Sharan171111" 
+        <motion.a
+          href="https://github.com/Sharan171111"
           whileHover={{ x: 5 }}
           target="_blank"
           className="text-blue-500 font-black flex items-center gap-2 hover:underline text-lg"
@@ -263,15 +282,15 @@ const Projects = () => {
             <div className="p-8 flex flex-col flex-grow">
               <div className="flex flex-wrap gap-2 mb-6">
                 {project.tags.map((tag, tagIdx) => (
-                  <motion.span 
+                  <motion.span
                     key={tag}
                     initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ 
-                      duration: 0.4, 
+                    transition={{
+                      duration: 0.4,
                       delay: (idx * 0.1) + (tagIdx * 0.08),
-                      ease: "easeOut" 
+                      ease: "easeOut"
                     }}
                     className="text-[9px] font-black uppercase px-3 py-1.5 rounded-lg bg-blue-500/10 text-blue-400 tracking-wider border border-blue-500/10"
                   >
@@ -283,9 +302,9 @@ const Projects = () => {
               <p className="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
                 {project.description}
               </p>
-              <a 
-                href={project.link} 
-                target="_blank" 
+              <a
+                href={project.link}
+                target="_blank"
                 className="w-full py-4 rounded-2xl bg-white/5 border border-white/10 group-hover:bg-blue-600 group-hover:text-white group-hover:border-transparent transition-all font-black text-xs uppercase tracking-[0.2em] flex items-center justify-center gap-2"
               >
                 Source Code <Github size={14} />
@@ -305,7 +324,7 @@ const ExperienceSection = () => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-4xl mx-auto relative z-10">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -317,7 +336,7 @@ const ExperienceSection = () => {
 
         <div className="space-y-16">
           {EXPERIENCES.map((exp, idx) => (
-            <motion.div 
+            <motion.div
               key={exp.company}
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -326,11 +345,11 @@ const ExperienceSection = () => {
               className="relative pl-12 md:pl-16 border-l-2 border-white/5 hover:border-blue-500/50 transition-colors duration-500"
             >
               {/* Timeline Marker */}
-              <motion.div 
+              <motion.div
                 whileInView={{ scale: [0, 1.2, 1] }}
-                className="absolute left-[-11px] top-0 w-[20px] h-[20px] rounded-full bg-slate-900 border-4 border-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.6)] z-20" 
+                className="absolute left-[-11px] top-0 w-[20px] h-[20px] rounded-full bg-slate-900 border-4 border-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.6)] z-20"
               />
-              
+
               <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-2">
                 <div>
                   <h3 className="text-2xl md:text-3xl font-black text-white tracking-tight">{exp.role}</h3>
@@ -340,17 +359,17 @@ const ExperienceSection = () => {
                   {exp.period}
                 </span>
               </div>
-              
+
               <ul className="space-y-4">
                 {exp.highlights.map((item, i) => (
-                  <motion.li 
-                    key={i} 
+                  <motion.li
+                    key={i}
                     initial={{ opacity: 0, y: 5 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 + (i * 0.1) }}
                     className="text-slate-400 text-sm md:text-base flex gap-4 leading-relaxed"
                   >
-                    <span className="text-blue-500 font-bold mt-1.5 shrink-0">0{i+1}</span>
+                    <span className="text-blue-500 font-bold mt-1.5 shrink-0">0{i + 1}</span>
                     {item}
                   </motion.li>
                 ))}
@@ -373,15 +392,15 @@ const SkillsSection = () => {
 
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
         {SKILL_CATEGORIES.map((cat, idx) => (
-          <motion.div 
-            key={cat.name} 
+          <motion.div
+            key={cat.name}
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: idx * 0.1 }}
             className="p-10 glass rounded-[40px] group hover:border-blue-500/50 transition-all duration-500 flex flex-col h-full bg-slate-900/40"
           >
-            <motion.div 
+            <motion.div
               whileHover={{ scale: 1.2, rotate: 10 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
               className="w-16 h-16 bg-blue-600/10 rounded-2xl flex items-center justify-center text-blue-500 mb-8 shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300"
@@ -391,9 +410,9 @@ const SkillsSection = () => {
               {cat.icon === 'layers' && <Cloud size={32} />}
               {cat.icon === 'terminal' && <Terminal size={32} />}
             </motion.div>
-            
+
             <h3 className="text-2xl font-black mb-8 tracking-tight">{cat.name}</h3>
-            
+
             <div className="flex flex-wrap gap-2.5 mt-auto">
               {cat.skills.map(skill => (
                 <span key={skill} className="px-4 py-2 rounded-xl bg-white/5 text-[11px] font-bold text-slate-300 border border-white/5 hover:bg-white/10 hover:text-white transition-colors cursor-default">
@@ -411,7 +430,7 @@ const SkillsSection = () => {
 const Contact = () => {
   return (
     <section id="contact" className="py-32 px-6">
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -420,25 +439,25 @@ const Contact = () => {
         <div className="absolute top-0 right-0 p-12 text-blue-500/5 select-none pointer-events-none">
           <Github size={400} />
         </div>
-        
+
         <div className="relative z-10">
           <h2 className="text-5xl md:text-8xl font-black mb-10 leading-[0.9] tracking-tighter">
-            Build something <br/>
+            Build something <br />
             <span className="text-gradient">exceptional</span> together.
           </h2>
-          
+
           <p className="text-slate-400 text-lg md:text-xl mb-16 max-w-2xl mx-auto font-medium">
-            Open for software engineering or data-centric roles. 
+            Open for software engineering or data-centric roles.
             Let's discuss how I can elevate your next project.
           </p>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
             {[
-              { icon: <Mail size={24}/>, label: 'Email Me', value: 'sharanks171@gmail.com', href: 'mailto:sharanks171@gmail.com', color: 'blue' },
-              { icon: <Phone size={24}/>, label: 'Call Me', value: '+91-9483563047', href: 'tel:+919483563047', color: 'emerald' },
-              { icon: <Linkedin size={24}/>, label: 'LinkedIn', value: 'sharan-ks', href: 'https://linkedin.com/in/sharan-ks', color: 'indigo' }
+              { icon: <Mail size={24} />, label: 'Email Me', value: 'sharanks171@gmail.com', href: 'mailto:sharanks171@gmail.com', color: 'blue' },
+              { icon: <Phone size={24} />, label: 'Call Me', value: '+91-9483563047', href: 'tel:+919483563047', color: 'emerald' },
+              { icon: <Linkedin size={24} />, label: 'LinkedIn', value: 'sharan-ks', href: 'https://linkedin.com/in/sharan-ks', color: 'indigo' }
             ].map((item, idx) => (
-              <motion.a 
+              <motion.a
                 key={item.label}
                 href={item.href}
                 target={item.href.startsWith('http') ? '_blank' : undefined}
@@ -480,18 +499,18 @@ const App: React.FC = () => {
   return (
     <div className="bg-slate-950 min-h-screen text-slate-200 selection:bg-blue-500 selection:text-white">
       {/* Progress Bar */}
-      <motion.div 
+      <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-blue-600 z-[100] origin-left shadow-[0_0_10px_rgba(37,99,235,0.8)]"
         style={{ scaleX }}
       />
-      
+
       <Nav />
       <Hero />
       <ExperienceSection />
       <Projects />
       <SkillsSection />
       <Contact />
-      
+
       {/* Footer Branding */}
       <footer className="py-12 text-center text-slate-600 border-t border-white/5">
         <p className="text-[10px] font-black tracking-[0.5em] uppercase opacity-50">Stay Hungry — Stay Foolish</p>
