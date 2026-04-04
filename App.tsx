@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
 import {
@@ -6,19 +5,14 @@ import {
   Linkedin,
   Mail,
   Phone,
-  ExternalLink,
   Menu,
   X,
-  ChevronRight,
   Monitor,
   Database,
   Cloud,
   ArrowUpRight,
   Terminal,
   Code2,
-  GitBranch,
-  Star,
-  ShieldCheck,
   Download,
   Sun,
   Moon
@@ -91,7 +85,6 @@ const Nav = ({ theme, toggleTheme }: { theme: 'dark' | 'light'; toggleTheme: () 
           SHARAN<span className="text-blue-500">.KS</span>
         </motion.div>
 
-        {/* Desktop Menu */}
         <div className="hidden md:flex gap-8 items-center">
           {menuItems.map((item) => (
             <motion.a
@@ -129,7 +122,6 @@ const Nav = ({ theme, toggleTheme }: { theme: 'dark' | 'light'; toggleTheme: () 
           </div>
         </div>
 
-        {/* Mobile Menu Toggle */}
         <div className="md:hidden flex items-center gap-4">
           <button
             onClick={toggleTheme}
@@ -143,7 +135,6 @@ const Nav = ({ theme, toggleTheme }: { theme: 'dark' | 'light'; toggleTheme: () 
         </div>
       </div>
 
-      {/* Mobile Drawer */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -179,7 +170,6 @@ const Hero = ({ theme }: { theme: 'dark' | 'light' }) => {
 
   return (
     <section id="about" className="min-h-screen pt-32 pb-16 px-6 flex flex-col items-center justify-center relative overflow-hidden">
-      {/* Parallax Background Blobs */}
       <motion.div
         style={{ y: y1 }}
         className={`absolute top-1/4 -left-20 w-[500px] h-[500px] ${theme === 'dark' ? 'bg-blue-600/10' : 'bg-blue-400/20'} rounded-full blur-[120px] -z-10`}
@@ -201,16 +191,19 @@ const Hero = ({ theme }: { theme: 'dark' | 'light' }) => {
           transition={{ delay: 0.2 }}
           className={`px-4 py-2 rounded-full ${theme === 'dark' ? 'glass border-white/10 text-blue-400' : 'bg-blue-50 border-blue-100 text-blue-600'} border text-[10px] font-black uppercase tracking-[0.2em] mb-12 inline-block`}
         >
-          Software Engineer & Data Strategist
+          Business Analyst and Data Analyst Portfolio
         </motion.span>
 
         <h1 className={`text-7xl md:text-9xl font-black mb-12 leading-[0.9] tracking-tighter ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>
           <span className="text-gradient">SHARAN</span> K S
         </h1>
 
-        <p className={`text-lg md:text-xl ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'} max-w-2xl mx-auto mb-16 leading-relaxed font-medium`}>
-          Information Science graduate specialized in robust software,
-          AI-driven applications, and high-performance data dashboards.
+        <h2 className={`text-2xl md:text-4xl font-black tracking-tight mb-6 ${theme === 'dark' ? 'text-slate-200' : 'text-slate-800'}`}>
+          Turning business questions into dashboards, insights, and measurable action.
+        </h2>
+
+        <p className={`text-lg md:text-xl ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'} max-w-3xl mx-auto mb-16 leading-relaxed font-medium`}>
+          Information Science graduate focused on business analysis, data analysis, and reporting workflows. I build SQL, Python, Excel, and Power BI solutions that help teams track performance, uncover trends, and make better decisions.
         </p>
 
         <div className="flex flex-wrap justify-center gap-6">
@@ -254,7 +247,6 @@ const Hero = ({ theme }: { theme: 'dark' | 'light' }) => {
         </div>
       </motion.div>
 
-      {/* Stats Preview */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -263,23 +255,22 @@ const Hero = ({ theme }: { theme: 'dark' | 'light' }) => {
       >
         <div className="text-center">
           <p className={`text-3xl font-black ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>10+</p>
-          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Repositories</p>
+          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Portfolio Repositories</p>
         </div>
         <div className="text-center">
           <p className="text-3xl font-black text-blue-500">3+</p>
-          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Global Internships</p>
+          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Industry Internships</p>
         </div>
         <div className="text-center">
-          <p className={`text-3xl font-black ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>AI</p>
-          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Integration Expert</p>
+          <p className={`text-3xl font-black ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>BI</p>
+          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Dashboard Focus</p>
         </div>
         <div className="text-center">
-          <p className={`text-3xl font-black ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>100%</p>
-          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Commitment</p>
+          <p className={`text-3xl font-black ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>SQL</p>
+          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Analysis Ready</p>
         </div>
       </motion.div>
 
-      {/* Scroll Indicator */}
       <motion.div
         style={{ opacity }}
         className="absolute bottom-10 flex flex-col items-center gap-4 text-slate-500"
@@ -308,7 +299,7 @@ const Projects = ({ theme }: { theme: 'dark' | 'light' }) => {
       >
         <div className="max-w-2xl">
           <h2 className={`text-5xl md:text-6xl font-black mb-6 tracking-tighter ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>Selected <span className="text-blue-500">Showcase</span></h2>
-          <p className={`${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'} text-lg`}>Deep dives into my technical contributions from GitHub and beyond.</p>
+          <p className={`${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'} text-lg`}>Portfolio case studies centered on business problems, analytical approach, and measurable value.</p>
         </div>
         <motion.a
           href="https://github.com/Sharan171111"
@@ -358,9 +349,12 @@ const Projects = ({ theme }: { theme: 'dark' | 'light' }) => {
                 ))}
               </div>
               <h3 className={`text-2xl font-black mb-4 ${theme === 'dark' ? 'text-white' : 'text-slate-900'} group-hover:text-blue-500 transition-colors`}>{project.title}</h3>
-              <p className={`${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'} text-sm leading-relaxed mb-8 flex-grow`}>
-                {project.description}
-              </p>
+              <div className={`space-y-4 text-sm leading-relaxed mb-8 flex-grow ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}`}>
+                <p><span className={`font-black ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>Problem:</span> {project.problem}</p>
+                <p><span className={`font-black ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>Approach:</span> {project.approach}</p>
+                <p><span className={`font-black ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>Tools:</span> {project.toolsSummary}</p>
+                <p><span className={`font-black ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>Impact:</span> {project.impact}</p>
+              </div>
               <a
                 href={project.link}
                 target="_blank"
@@ -379,7 +373,6 @@ const Projects = ({ theme }: { theme: 'dark' | 'light' }) => {
 const ExperienceSection = ({ theme }: { theme: 'dark' | 'light' }) => {
   return (
     <section id="experience" className={`py-32 px-6 ${theme === 'dark' ? 'bg-[#020617] border-white/5' : 'bg-slate-50 border-slate-200'} border-y relative overflow-hidden transition-colors duration-300`}>
-      {/* Background radial highlight */}
       <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] ${theme === 'dark' ? 'bg-blue-500/5' : 'bg-blue-200/20'} rounded-full blur-[120px] pointer-events-none`} />
 
       <div className="max-w-4xl mx-auto relative z-10">
@@ -390,7 +383,7 @@ const ExperienceSection = ({ theme }: { theme: 'dark' | 'light' }) => {
           className="text-center mb-24"
         >
           <h2 className={`text-5xl md:text-7xl font-black mb-6 tracking-tighter ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>The Journey</h2>
-          <p className={`${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'} text-lg`}>Industry experiences and professional growth.</p>
+          <p className={`${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'} text-lg`}>Experience in reporting, automation, and business-facing problem solving.</p>
         </motion.div>
 
         <div className="space-y-16">
@@ -403,7 +396,6 @@ const ExperienceSection = ({ theme }: { theme: 'dark' | 'light' }) => {
               transition={{ duration: 0.6, delay: idx * 0.1 }}
               className={`relative pl-12 md:pl-16 border-l-2 ${theme === 'dark' ? 'border-white/5' : 'border-slate-200'} hover:border-blue-500/50 transition-colors duration-500`}
             >
-              {/* Timeline Marker */}
               <motion.div
                 whileInView={{ scale: [0, 1.2, 1] }}
                 className={`absolute left-[-11px] top-0 w-[20px] h-[20px] rounded-full ${theme === 'dark' ? 'bg-slate-900 border-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.6)]' : 'bg-white border-blue-600 shadow-lg'} border-4 z-20`}
@@ -446,7 +438,7 @@ const SkillsSection = ({ theme }: { theme: 'dark' | 'light' }) => {
     <section id="skills" className="py-32 px-6 max-w-7xl mx-auto">
       <div className="text-center mb-24">
         <h2 className={`text-5xl md:text-6xl font-black mb-6 tracking-tighter ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>Tech <span className="text-blue-500">Arsenal</span></h2>
-        <p className={`${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'} text-lg max-w-2xl mx-auto`}>Specialized in the full data pipeline, from raw code to high-level business intelligence.</p>
+        <p className={`${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'} text-lg max-w-2xl mx-auto`}>Core analyst toolkit across SQL, Python, Excel, Power BI, and business reporting workflows.</p>
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -512,21 +504,20 @@ const Contact = ({ theme }: { theme: 'dark' | 'light' }) => {
 
         <div className="relative z-10">
           <h2 className={`text-5xl md:text-8xl font-black mb-10 leading-[0.9] tracking-tighter ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>
-            Build something <br />
-            <span className="text-gradient">exceptional</span> together.
+            Let's turn data <br />
+            <span className="text-gradient">into decisions</span>.
           </h2>
 
           <p className={`${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'} text-lg md:text-xl mb-16 max-w-2xl mx-auto font-medium`}>
-            Open for software engineering or data-centric roles.
-            Let's discuss how I can elevate your next project.
+            Open to Business Analyst and Data Analyst opportunities where I can support dashboards, reporting, process improvement, and insight-driven decision making.
           </p>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {[
-              { icon: <Mail size={24} />, label: 'Email Me', value: 'sharanks171@gmail.com', href: 'mailto:sharanks171@gmail.com', color: 'blue' },
-              { icon: <Phone size={24} />, label: 'Call Me', value: '+91-9483563047', href: 'tel:+919483563047', color: 'emerald' },
-              { icon: <Linkedin size={24} />, label: 'LinkedIn', value: 'sharan-ks', href: 'https://linkedin.com/in/sharan-ks', color: 'indigo' }
-            ].map((item, idx) => (
+              { icon: <Mail size={24} />, label: 'Email', value: 'sharanks171@gmail.com', href: 'mailto:sharanks171@gmail.com' },
+              { icon: <Phone size={24} />, label: 'Phone', value: '+91-9483563047', href: 'tel:+919483563047' },
+              { icon: <Linkedin size={24} />, label: 'LinkedIn', value: 'linkedin.com/in/sharan-ks', href: 'https://linkedin.com/in/sharan-ks' }
+            ].map((item) => (
               <motion.a
                 key={item.label}
                 href={item.href}
@@ -534,19 +525,23 @@ const Contact = ({ theme }: { theme: 'dark' | 'light' }) => {
                 whileHover={{ y: -8, scale: 1.02 }}
                 className={`flex items-center gap-5 p-8 ${theme === 'dark' ? 'glass border-white/5 hover:bg-white/10' : 'bg-slate-50 border-slate-200 hover:bg-white shadow-sm hover:shadow-md'} rounded-[32px] transition-all group text-left border`}
               >
-                <div className={`p-4 rounded-2xl bg-blue-500/10 text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-all`}>
+                <div className="p-4 rounded-2xl bg-blue-500/10 text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-all">
                   {item.icon}
                 </div>
                 <div>
                   <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">{item.label}</p>
-                  <p className={`text-sm font-bold truncate max-w-[150px] ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>{item.value}</p>
+                  <p className={`text-sm font-bold truncate max-w-[200px] ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>{item.value}</p>
                 </div>
               </motion.a>
             ))}
           </div>
 
+          <p className={`${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'} text-sm md:text-base max-w-2xl mx-auto mb-12`}>
+            Recruiters and hiring managers can reach out for analyst roles involving KPI reporting, dashboard development, SQL analysis, business process improvement, and cross-functional problem solving.
+          </p>
+
           <div className={`flex flex-col md:flex-row items-center justify-between gap-8 pt-12 border-t ${theme === 'dark' ? 'border-white/5' : 'border-slate-100'} text-slate-500`}>
-            <p className="text-[10px] font-black tracking-[0.3em] uppercase">© 2024 SHARAN K S — ENGINEERED FOR EXCELLENCE</p>
+            <p className="text-[10px] font-black tracking-[0.3em] uppercase">� 2026 SHARAN K S | BUSINESS AND DATA ANALYTICS PORTFOLIO</p>
             <div className="flex gap-8">
               <a href="#" className="hover:text-white transition-colors text-[10px] font-black tracking-widest uppercase">Privacy</a>
               <a href="#" className="hover:text-white transition-colors text-[10px] font-black tracking-widest uppercase">Terms</a>
@@ -571,20 +566,17 @@ const App: React.FC = () => {
   });
 
   useEffect(() => {
-    // Loading animation
     const timer = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
-    // Show scroll to top button
     const handleScroll = () => setShowScrollTop(window.scrollY > 500);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
-    // Apply theme
     document.documentElement.classList.toggle('light', theme === 'light');
   }, [theme]);
 
@@ -598,7 +590,6 @@ const App: React.FC = () => {
 
   return (
     <div className={`${theme === 'dark' ? 'bg-slate-950 text-slate-200' : 'bg-white text-slate-900'} min-h-screen selection:bg-blue-500 selection:text-white transition-colors duration-300`}>
-      {/* Progress Bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-blue-600 z-[100] origin-left shadow-[0_0_10px_rgba(37,99,235,0.8)]"
         style={{ scaleX }}
@@ -611,7 +602,6 @@ const App: React.FC = () => {
       <SkillsSection theme={theme} />
       <Contact theme={theme} />
 
-      {/* Floating Action Buttons */}
       <AnimatePresence>
         {showScrollTop && (
           <motion.button
@@ -628,7 +618,6 @@ const App: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* Quick Contact FAB */}
       <motion.a
         href="mailto:sharanks171@gmail.com"
         initial={{ opacity: 0, scale: 0 }}
@@ -641,24 +630,23 @@ const App: React.FC = () => {
         <Mail size={24} className="group-hover:text-white transition-colors" />
       </motion.a>
 
-      {/* Footer Branding */}
       <footer className={`py-20 text-center ${theme === 'dark' ? 'text-slate-600' : 'text-slate-400'} border-t ${theme === 'dark' ? 'border-white/5' : 'border-slate-200'}`}>
         <div className="max-w-7xl mx-auto px-6 flex flex-col items-center">
           <div className="flex flex-wrap justify-center gap-8 mb-12">
             {[
-              { label: 'Performance', value: '99+', color: 'emerald' },
-              { label: 'Accessibility', value: '100', color: 'blue' },
-              { label: 'Best Practices', value: '100', color: 'purple' },
-              { label: 'SEO', value: '100', color: 'amber' }
+              { label: 'Performance', value: '99+', className: 'text-emerald-500' },
+              { label: 'Accessibility', value: '100', className: 'text-blue-500' },
+              { label: 'Best Practices', value: '100', className: 'text-violet-500' },
+              { label: 'SEO', value: '100', className: 'text-amber-500' }
             ].map(stat => (
               <div key={stat.label} className="flex flex-col items-center">
-                <div className={`text-xl font-black text-${stat.color}-500 mb-1`}>{stat.value}</div>
+                <div className={`text-xl font-black mb-1 ${stat.className}`}>{stat.value}</div>
                 <div className="text-[9px] font-bold uppercase tracking-widest opacity-60">{stat.label}</div>
               </div>
             ))}
           </div>
 
-          <p className="text-[10px] font-black tracking-[0.5em] uppercase opacity-50 mb-4">Stay Hungry — Stay Foolish</p>
+          <p className="text-[10px] font-black tracking-[0.5em] uppercase opacity-50 mb-4">Built for Business Insight</p>
           <p className="text-[9px] font-medium opacity-40">Built with React 19 + Vite + Framer Motion</p>
         </div>
       </footer>

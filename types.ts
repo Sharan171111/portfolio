@@ -1,7 +1,10 @@
 
 export interface Project {
   title: string;
-  description: string;
+  problem: string;
+  approach: string;
+  toolsSummary: string;
+  impact: string;
   tags: string[];
   link?: string;
   image: string;
