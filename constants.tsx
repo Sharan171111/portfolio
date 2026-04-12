@@ -4,42 +4,42 @@ const COMMON_GITHUB_LINK = "https://github.com/Sharan171111?tab=repositories";
 
 export const PROJECTS: Project[] = [
   {
-    title: "Healthcare Insights Platform",
-    problem: "Patients and care teams often struggle with fragmented symptom, appointment, and follow-up data, which slows decision-making and weakens service visibility.",
-    approach: "Designed a healthcare workflow platform that centralizes user inputs, structures operational data, and surfaces decision-support insights through a responsive product experience.",
-    toolsSummary: "React, TypeScript, Supabase, OpenAI, SQL",
-    impact: "Demonstrated how a data-backed product can improve information access, support faster triage, and create a stronger foundation for patient experience reporting.",
-    tags: ["Product Analytics", "SQL", "Dashboard Thinking", "Data Workflow", "UX"],
+    title: "Healthcare Workflow & Insights Platform",
+    problem: "Clinics face fragmented patient data, creating a massive disconnect between software usability and data-driven medical decisions.",
+    approach: "Architected a full-stack web application using React and Node.js that securely centralizes patient inputs, while building complex SQL pipelines to surface medical KPIs in real-time dashboards.",
+    toolsSummary: "React, TypeScript, Node.js, Supabase, PostgreSQL, Tailwind",
+    impact: "Delivered a dual-purpose solution: a highly intuitive frontend software for staff, and a robust data model generating actionable analytics for management.",
+    tags: ["Full-Stack Dev", "SQL", "React", "Data Engineering", "UI/UX"],
     image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=800",
     link: COMMON_GITHUB_LINK
   },
   {
-    title: "Modern SQL Data Warehouse",
-    problem: "Business reporting becomes unreliable when operational data is spread across raw tables with inconsistent definitions and no analytics-ready structure.",
-    approach: "Built a medallion-style warehouse with staged transformations, star schema modeling, and reusable SQL layers to support cleaner KPI reporting and trend analysis.",
-    toolsSummary: "SQL, ETL, Star Schema, Data Modeling, BI Reporting",
-    impact: "Created a scalable analytics foundation for faster reporting, clearer metric definitions, and easier downstream dashboard development.",
-    tags: ["SQL", "ETL", "Star Schema", "KPI Reporting", "Data Modeling"],
+    title: "Modern Data Pipeline & API Service",
+    problem: "Cross-functional teams need both clean historical data for analytics and lightning-fast API responses for live applications.",
+    approach: "Built an ETL-driven data warehouse using Python and SQL to clean operational records, and wrapped it in a fast RESTful API using Express.js to serve data to frontend clients.",
+    toolsSummary: "Python, SQL, Node.js, Express, Star Schema, ETL",
+    impact: "Bridged the gap between Software Development and Business Intelligence by building a system that serves both applications and BI dashboards flawlessly.",
+    tags: ["Backend Dev", "ETL", "Python", "API Design", "Data Modeling"],
     image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&q=80&w=800",
     link: COMMON_GITHUB_LINK
   },
   {
-    title: "StegaQNN Security Analytics Prototype",
-    problem: "Sensitive information requires secure handling, but teams also need traceability and controlled retrieval when working with protected digital assets.",
-    approach: "Developed a Python-based prototype for secure image data embedding and retrieval, combining algorithm design with structured validation for accuracy and reliability.",
-    toolsSummary: "Python, NumPy, Flask, OpenCV",
-    impact: "Showcased analytical problem-solving in a high-risk context by balancing security, retrieval logic, and system usability.",
-    tags: ["Python", "Analytical Thinking", "Validation", "Security", "Prototype"],
+    title: "StegaQNN Security Engine",
+    problem: "High-level security systems often rely on heavy scripts that are difficult to integrate into modern software applications or analyze at scale.",
+    approach: "Developed a core security/embedding algorithm in Python and integrated it into a Flask web architecture to allow users to interact with secure data visually.",
+    toolsSummary: "Python, Flask, NumPy, OpenCV, Web UI",
+    impact: "Created a bridge between hardcore algorithmic analysis and user-facing software, allowing complex security operations to run via web requests.",
+    tags: ["Software Architecture", "Python", "Security", "Algorithms", "Web Dev"],
     image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800",
     link: COMMON_GITHUB_LINK
   },
   {
-    title: "Marketing Reporting Automation",
-    problem: "Manual campaign reporting creates delays, inconsistent updates, and limited visibility into lead performance across channels.",
-    approach: "Automated data collection and reporting workflows to move campaign data from APIs into trackable outputs for recurring dashboard and stakeholder needs.",
-    toolsSummary: "n8n, Python, REST APIs, Power BI, Excel",
-    impact: "Reduced reporting friction, improved data availability, and supported faster business decisions for performance marketing teams.",
-    tags: ["Automation", "Power BI", "APIs", "Reporting", "Process Improvement"],
+    title: "Automated Marketing BI System",
+    problem: "Marketing teams were manually pulling metrics, which wasted engineering time and delayed critical analytical insights.",
+    approach: "Engineered webhooks and automated workflows (n8n/Python) to scrape and aggregate APIs, feeding directly into a React admin panel and PowerBI dashboards.",
+    toolsSummary: "n8n, REST APIs, React, Python, Power BI, SQL",
+    impact: "Eliminated manual data engineering, completely automating the extraction process and providing instantaneous analytics to stakeholders.",
+    tags: ["Automation", "APIs", "Power BI", "React", "System Integration"],
     image: "https://images.unsplash.com/photo-1518433278981-2a268a88f7fd?auto=format&fit=crop&q=80&w=800",
     link: COMMON_GITHUB_LINK
   }
@@ -48,55 +48,54 @@ export const PROJECTS: Project[] = [
 export const EXPERIENCES: Experience[] = [
   {
     company: "Trilliant Digital",
-    role: "Digital Marketing Technology Trainee",
+    role: "MarTech Trainee (Analytics & Development)",
     period: "Aug 2025 - Nov 2025",
     highlights: [
-      "Built automated Power BI and Looker Studio dashboards to track campaign, lead, and channel performance for faster weekly reporting.",
-      "Connected marketing data sources through n8n workflows, reducing manual data handling and improving reporting consistency.",
-      "Analyzed funnel performance across Google, Meta, and LinkedIn campaigns to identify drop-offs and support budget optimization decisions.",
-      "Recommended SEO and performance improvements that contributed to a 25% increase in organic visibility."
+      "Engineered automated data pipelines to extract API metrics from Google and Meta, piping them into structured SQL and BI environments.",
+      "Built interactive data visualizations in Power BI, combining frontend UI principles with deep statistical analysis.",
+      "Diagnosed technical SEO bottlenecks and deployed web performance improvements, lifting organic site metrics by 25%."
     ]
   },
   {
     company: "New Mangaluru Port Authority",
-    role: "IT Intern",
+    role: "IT & Software Intern",
     period: "Feb 2025 - May 2025",
     highlights: [
-      "Monitored operational systems and translated infrastructure issues into actionable updates for smoother day-to-day support.",
-      "Maintained Docker-based environments for internal applications, improving deployment reliability and reducing setup inconsistencies."
+      "Developed internal monitoring tools to track infrastructure health, applying analytical thinking to resolve operational lag.",
+      "Managed Docker-based deployments for in-house software, streamlining the release cycle for backend applications."
     ]
   },
   {
     company: "Seventh Sense Talent Solutions",
-    role: "DevOps Intern",
+    role: "DevOps & Systems Intern",
     period: "Nov 2023 - Dec 2023",
     highlights: [
-      "Supported CI/CD workflows with GitLab CI and Jenkins to improve release consistency and reduce manual deployment effort.",
-      "Containerized legacy applications to standardize environments across teams and simplify handoffs.",
-      "Automated recurring infrastructure checks with scripting, helping the team identify issues earlier."
+      "Wrote automation scripts using Bash and Python to scrape system analytics and send alerts.",
+      "Supported CI/CD pipelines (GitLab/Jenkins) to ensure seamless software delivery and deployment reliability.",
+      "Containerized legacy architectures to modernize the team's software development lifecycle."
     ]
   }
 ];
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
-    name: "Data Analysis",
-    skills: ["SQL", "Python", "Excel", "Power BI", "EDA"],
+    name: "Software Development",
+    skills: ["JavaScript/TypeScript", "React & Next.js", "Node.js & Express", "Tailwind CSS", "RESTful APIs"],
     icon: "code"
   },
   {
-    name: "BI & Reporting",
-    skills: ["Dashboard Design", "KPI Tracking", "Looker Studio", "Data Storytelling", "Stakeholder Reporting"],
+    name: "Data Analytics & BI",
+    skills: ["SQL Data Modeling", "Python (NumPy/Pandas)", "Power BI", "ETL Pipelines", "Statistical Analysis"],
     icon: "chart"
   },
   {
-    name: "Business Problem Solving",
-    skills: ["Requirements Gathering", "Root Cause Analysis", "Process Improvement", "Data Validation", "Decision Support"],
-    icon: "layers"
+    name: "Cloud & DevOps",
+    skills: ["Docker & Containers", "Git / CI/CD", "Linux Administration", "n8n Automation", "AWS Basics"],
+    icon: "server"
   },
   {
-    name: "Tools & Automation",
-    skills: ["n8n", "REST APIs", "Postman", "Google Analytics", "Git"],
-    icon: "terminal"
+    name: "Systems & Problem Solving",
+    skills: ["System Architecture", "Root Cause Analysis", "Database Design", "Agile Workflows", "Data Storytelling"],
+    icon: "layers"
   }
 ];
