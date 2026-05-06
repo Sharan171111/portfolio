@@ -541,7 +541,7 @@ const Contact = ({ theme }: { theme: 'dark' | 'light' }) => {
           </p>
 
           <div className={`flex flex-col md:flex-row items-center justify-between gap-8 pt-12 border-t ${theme === 'dark' ? 'border-white/5' : 'border-slate-100'} text-slate-500`}>
-            <p className="text-[10px] font-black tracking-[0.3em] uppercase">© 2026 SHARAN K S | BUSINESS AND DATA ANALYTICS PORTFOLIO</p>
+            <p className="text-[10px] font-black tracking-[0.3em] uppercase">© 2026 SHARAN K S | SOFTWARE ENGINEER & ANALYST PORTFOLIO</p>
             <div className="flex gap-8">
               <a href="#" className="hover:text-white transition-colors text-[10px] font-black tracking-widest uppercase">Privacy</a>
               <a href="#" className="hover:text-white transition-colors text-[10px] font-black tracking-widest uppercase">Terms</a>
