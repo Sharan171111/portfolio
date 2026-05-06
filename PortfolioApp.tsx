@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
 import {
   Github,
@@ -191,7 +191,7 @@ const Hero = ({ theme }: { theme: 'dark' | 'light' }) => {
           transition={{ delay: 0.2 }}
           className={`px-4 py-2 rounded-full ${theme === 'dark' ? 'glass border-white/10 text-blue-400' : 'bg-blue-50 border-blue-100 text-blue-600'} border text-[10px] font-black uppercase tracking-[0.2em] mb-12 inline-block`}
         >
-          Business Analyst and Data Analyst Portfolio
+          Software Developer & Analyst Portfolio
         </motion.span>
 
         <h1 className={`text-7xl md:text-9xl font-black mb-12 leading-[0.9] tracking-tighter ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>
