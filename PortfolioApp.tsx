@@ -537,7 +537,7 @@ const Contact = ({ theme }: { theme: 'dark' | 'light' }) => {
           </div>
 
           <p className={`${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'} text-sm md:text-base max-w-2xl mx-auto mb-12`}>
-            Recruiters and hiring managers can reach out for analyst roles involving KPI reporting, dashboard development, SQL analysis, business process improvement, and cross-functional problem solving.
+            Recruiters and hiring managers can reach out for Software Engineering and Analyst roles involving full-stack development, API integration, KPI reporting, dashboard development, and cross-functional problem solving.
           </p>
 
           <div className={`flex flex-col md:flex-row items-center justify-between gap-8 pt-12 border-t ${theme === 'dark' ? 'border-white/5' : 'border-slate-100'} text-slate-500`}>
