@@ -91,6 +91,181 @@
     <div class="noise-overlay"></div>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
-</body>
+    <script>
+        (function() {
+            const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+            const hiremeCode = ['h', 'i', 'r', 'e', 'm', 'e'];
 
+            let konamiIndex = 0;
+            let hiremeIndex = 0;
+
+            function triggerEasterEgg() {
+                // Load canvas-confetti dynamically
+                if (!window.confetti) {
+                    const script = document.createElement('script');
+                    script.src = 'https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js';
+                    script.onload = () => explodeConfetti();
+                    document.body.appendChild(script);
+                } else {
+                    explodeConfetti();
+                }
+
+                showModal();
+            }
+
+            function explodeConfetti() {
+                var duration = 3000;
+                var end = Date.now() + duration;
+
+                (function frame() {
+                    confetti({
+                        particleCount: 5,
+                        angle: 60,
+                        spread: 55,
+                        origin: { x: 0 },
+                        colors: ['#3b82f6', '#8b5cf6', '#ec4899']
+                    });
+                    confetti({
+                        particleCount: 5,
+                        angle: 120,
+                        spread: 55,
+                        origin: { x: 1 },
+                        colors: ['#3b82f6', '#8b5cf6', '#ec4899']
+                    });
+
+                    if (Date.now() < end) {
+                        requestAnimationFrame(frame);
+                    }
+                }());
+            }
+
+            function showModal() {
+                if (document.getElementById('easter-egg-modal')) return;
+
+                const modalOverlay = document.createElement('div');
+                modalOverlay.id = 'easter-egg-modal';
+                Object.assign(modalOverlay.style, {
+                    position: 'fixed',
+                    top: '0', left: '0', width: '100vw', height: '100vh',
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    backdropFilter: 'blur(8px)',
+                    display: 'flex', justifyContent: 'center', alignItems: 'center',
+                    zIndex: '100000',
+                    opacity: '0',
+                    transition: 'opacity 0.4s ease'
+                });
+
+                const modalContent = document.createElement('div');
+                Object.assign(modalContent.style, {
+                    background: 'linear-gradient(145deg, #0f172a, #1e293b)',
+                    border: '1px solid rgba(59, 130, 246, 0.3)',
+                    borderRadius: '24px',
+                    padding: '40px',
+                    textAlign: 'center',
+                    color: '#fff',
+                    boxShadow: '0 0 40px rgba(59, 130, 246, 0.2)',
+                    transform: 'scale(0.8) translateY(20px)',
+                    transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                    maxWidth: '400px',
+                    width: '90%',
+                    fontFamily: "'Inter', sans-serif"
+                });
+
+                modalContent.innerHTML = `
+                    <div style="font-size: 56px; margin-bottom: 16px; animation: bounce 2s infinite;">🚀</div>
+                    <h2 style="font-size: 36px; font-weight: 900; margin: 0 0 8px 0; background: linear-gradient(to right, #60a5fa, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -1px;">Sharan K S</h2>
+                    <h3 style="font-size: 18px; color: #94a3b8; margin: 0 0 28px 0; font-weight: 500;">Full Stack Developer</h3>
+                    
+                    <div style="background: rgba(0,0,0,0.4); border-radius: 16px; padding: 20px; margin-bottom: 32px; border: 1px solid rgba(255,255,255,0.05);">
+                        <p style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #64748b; margin: 0 0 16px 0; font-weight: 800;">Core Expertise</p>
+                        <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                            <span style="background: rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 8px 16px; border-radius: 10px; font-size: 14px; font-weight: 700;">React / Next.js</span>
+                            <span style="background: rgba(139, 92, 246, 0.15); border: 1px solid rgba(139, 92, 246, 0.3); color: #c4b5fd; padding: 8px 16px; border-radius: 10px; font-size: 14px; font-weight: 700;">Node.js</span>
+                            <span style="background: rgba(236, 72, 153, 0.15); border: 1px solid rgba(236, 72, 153, 0.3); color: #f9a8d4; padding: 8px 16px; border-radius: 10px; font-size: 14px; font-weight: 700;">SQL & Python</span>
+                        </div>
+                    </div>
+
+                    <a href="https://drive.google.com/uc?export=download&id=1Ua1qQKpt9ec7VbKO7AaHUIqFMlHD_d5c" target="_blank" style="display: inline-block; background: #2563eb; color: white; text-decoration: none; padding: 16px 32px; border-radius: 14px; font-weight: 800; font-size: 16px; transition: all 0.2s ease; box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4); margin-bottom: 20px; width: 100%; box-sizing: border-box;" onmouseover="this.style.background='#1d4ed8'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 15px 30px -5px rgba(37, 99, 235, 0.5)';" onmouseout="this.style.background='#2563eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 25px -5px rgba(37, 99, 235, 0.4)';">
+                        Download Resume
+                    </a>
+                    <br/>
+                    <button id="close-easter-egg" style="background: transparent; border: none; color: #64748b; font-size: 14px; cursor: pointer; transition: color 0.2s ease;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#64748b'">Close (Esc)</button>
+                `;
+
+                modalOverlay.appendChild(modalContent);
+                document.body.appendChild(modalOverlay);
+
+                // Add bounce animation keyframes if not exists
+                if (!document.getElementById('easter-egg-styles')) {
+                    const style = document.createElement('style');
+                    style.id = 'easter-egg-styles';
+                    style.innerHTML = `
+                        @keyframes bounce {
+                            0%, 100% { transform: translateY(-5%); animation-timing-function: cubic-bezier(0.8,0,1,1); }
+                            50% { transform: none; animation-timing-function: cubic-bezier(0,0,0.2,1); }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
+
+                // Trigger reflow for animations
+                requestAnimationFrame(() => {
+                    modalOverlay.style.opacity = '1';
+                    modalContent.style.transform = 'scale(1) translateY(0)';
+                });
+
+                const closeModal = () => {
+                    modalOverlay.style.opacity = '0';
+                    modalContent.style.transform = 'scale(0.8) translateY(20px)';
+                    setTimeout(() => modalOverlay.remove(), 400);
+                };
+
+                document.getElementById('close-easter-egg').addEventListener('click', closeModal);
+                
+                // Allow closing with Escape key
+                const escListener = (e) => {
+                    if (e.key === 'Escape') {
+                        closeModal();
+                        document.removeEventListener('keydown', escListener);
+                    }
+                };
+                document.addEventListener('keydown', escListener);
+            }
+
+            document.addEventListener('keydown', (e) => {
+                // Ignore keydown if focused on input/textarea
+                const activeEl = document.activeElement;
+                if (activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA')) return;
+
+                // Hireme Check
+                const hiremeChar = hiremeCode[hiremeIndex];
+                if (e.key.toLowerCase() === hiremeChar) {
+                    hiremeIndex++;
+                    if (hiremeIndex === hiremeCode.length) {
+                        triggerEasterEgg();
+                        hiremeIndex = 0; // reset
+                    }
+                } else {
+                    // reset if wrong character, but allow typing from start if it's 'h'
+                    hiremeIndex = e.key.toLowerCase() === 'h' ? 1 : 0;
+                }
+
+                // Konami Check
+                const konamiChar = konamiCode[konamiIndex];
+                // For 'b' and 'a', match case-insensitively. For arrows, exact match.
+                const isMatch = konamiChar.length > 1 ? e.key === konamiChar : e.key.toLowerCase() === konamiChar;
+                
+                if (isMatch) {
+                    konamiIndex++;
+                    if (konamiIndex === konamiCode.length) {
+                        triggerEasterEgg();
+                        konamiIndex = 0; // reset
+                    }
+                } else {
+                    konamiIndex = e.key === 'ArrowUp' ? 1 : 0;
+                }
+            });
+        })();
+    </script>
+</body>
 </html>
