@@ -4,44 +4,74 @@ const COMMON_GITHUB_LINK = "https://github.com/Sharan171111?tab=repositories";
 
 export const PROJECTS: Project[] = [
   {
-    title: "Healthcare Workflow & Insights Platform",
-    problem: "Clinics face fragmented patient data, creating a massive disconnect between software usability and data-driven medical decisions.",
-    approach: "Architected a full-stack web application using React and Node.js that securely centralizes patient inputs, while building complex SQL pipelines to surface medical KPIs in real-time dashboards.",
-    toolsSummary: "React, TypeScript, Node.js, Supabase, PostgreSQL, Tailwind",
-    impact: "Delivered a dual-purpose solution: a highly intuitive frontend software for staff, and a robust data model generating actionable analytics for management.",
-    tags: ["Full-Stack Dev", "SQL", "React", "Data Engineering", "UI/UX"],
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=800",
-    link: COMMON_GITHUB_LINK
+    title: "Video Sensitivity Analyzer",
+    problem: "Manual moderation of video content is slow and error-prone.",
+    approach: "Integrated Google Gemini AI to analyze video content sensitivity with real-time progress tracking via web sockets.",
+    toolsSummary: "JavaScript, Gemini AI, Full-stack, Video Streaming",
+    impact: "Provides seamless video streaming with real-time progress tracking and AI content sensitivity analysis.",
+    tags: ["JavaScript", "AI", "Video", "Full-Stack Dev"],
+    image: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=800",
+    link: "https://github.com/Sharan171111/video-sensitivity_analyzer"
   },
   {
-    title: "Modern Data Pipeline & API Service",
-    problem: "Cross-functional teams need both clean historical data for analytics and lightning-fast API responses for live applications.",
-    approach: "Built an ETL-driven data warehouse using Python and SQL to clean operational records, and wrapped it in a fast RESTful API using Express.js to serve data to frontend clients.",
-    toolsSummary: "Python, SQL, Node.js, Express, Star Schema, ETL",
-    impact: "Bridged the gap between Software Development and Business Intelligence by building a system that serves both applications and BI dashboards flawlessly.",
-    tags: ["Backend Dev", "ETL", "Python", "API Design", "Data Modeling"],
-    image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&q=80&w=800",
-    link: COMMON_GITHUB_LINK
+    title: "Data Warehouse Architecture",
+    problem: "Siloed data systems prevented unified, high-quality business analytics and reporting.",
+    approach: "Built a multi-layered (Bronze, Silver, Gold) Medallion Architecture with complete ETL pipelines using Stored Procedures.",
+    toolsSummary: "SQL Server, TSQL, Medallion Architecture, ETL",
+    impact: "Delivered a scalable analytics data source featuring data quality checks and Star Schema modeling for business intelligence.",
+    tags: ["Data Engineering", "SQL", "ETL", "Architecture"],
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
+    link: "https://github.com/Sharan171111/Data_warehouse_project"
   },
   {
-    title: "StegaQNN Security Engine",
-    problem: "High-level security systems often rely on heavy scripts that are difficult to integrate into modern software applications or analyze at scale.",
-    approach: "Developed a core security/embedding algorithm in Python and integrated it into a Flask web architecture to allow users to interact with secure data visually.",
-    toolsSummary: "Python, Flask, NumPy, OpenCV, Web UI",
-    impact: "Created a bridge between hardcore algorithmic analysis and user-facing software, allowing complex security operations to run via web requests.",
-    tags: ["Software Architecture", "Python", "Security", "Algorithms", "Web Dev"],
+    title: "Video Analyzer Platform",
+    problem: "Processing large video files efficiently while keeping the user informed of the progress was challenging.",
+    approach: "Built a decoupled architecture using a Python FastAPI backend and a React frontend, utilizing MongoDB and Socket.IO.",
+    toolsSummary: "Python, FastAPI, React, MongoDB, Socket.IO",
+    impact: "Enabled scalable processing of video content with real-time updates seamlessly delivered to the frontend client.",
+    tags: ["Python", "React", "FastAPI", "Full-Stack Dev"],
+    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=800",
+    link: "https://github.com/Sharan171111/Video-analyzer"
+  },
+  {
+    title: "Phishing Website Detection",
+    problem: "Users frequently fall victim to sophisticated phishing attacks that are hard to detect manually.",
+    approach: "Trained an XGBoost machine learning model on URL-based features to predict whether a given URL is legitimate or phishing.",
+    toolsSummary: "Python, XGBoost, Machine Learning, URL Features",
+    impact: "Created a predictive model capable of reliably identifying fraudulent websites to enhance cybersecurity.",
+    tags: ["Machine Learning", "Python", "Security", "XGBoost"],
+    image: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&q=80&w=800",
+    link: "https://github.com/Sharan171111/Final_year_project"
+  },
+  {
+    title: "Quantum Image Steganography",
+    problem: "Traditional steganography methods are becoming vulnerable to advanced computational attacks.",
+    approach: "Implemented simulated quantum rotation techniques in a Flask web application for high-security data hiding.",
+    toolsSummary: "Python, Flask, HTML, Steganography",
+    impact: "Provides highly secure image-based data encryption featuring built-in QR code generation and PSNR analysis.",
+    tags: ["Security", "Python", "Flask", "Cryptography"],
     image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800",
-    link: COMMON_GITHUB_LINK
+    link: "https://github.com/Sharan171111/-Image-Steganography-useing-Quantum-Technology"
   },
   {
-    title: "Automated Marketing BI System",
-    problem: "Marketing teams were manually pulling metrics, which wasted engineering time and delayed critical analytical insights.",
-    approach: "Engineered webhooks and automated workflows (n8n/Python) to scrape and aggregate APIs, feeding directly into a React admin panel and PowerBI dashboards.",
-    toolsSummary: "n8n, REST APIs, React, Python, Power BI, SQL",
-    impact: "Eliminated manual data engineering, completely automating the extraction process and providing instantaneous analytics to stakeholders.",
-    tags: ["Automation", "APIs", "Power BI", "React", "System Integration"],
-    image: "https://images.unsplash.com/photo-1518433278981-2a268a88f7fd?auto=format&fit=crop&q=80&w=800",
-    link: COMMON_GITHUB_LINK
+    title: "Netflix Power BI EDA",
+    problem: "Understanding content distribution and trends on Netflix required digesting massive CSV datasets.",
+    approach: "Performed extensive Exploratory Data Analysis (EDA) on the Netflix dataset and built visual reporting dashboards.",
+    toolsSummary: "Power BI, Data Analytics, Dashboards",
+    impact: "Developed interactive dashboards highlighting key content trends, distribution patterns, and insights.",
+    tags: ["Power BI", "Data Analytics", "EDA", "Dashboards"],
+    image: "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?auto=format&fit=crop&q=80&w=800",
+    link: "https://github.com/Sharan171111/netflix-powerbi-eda"
+  },
+  {
+    title: "Data Science Internship Analysis",
+    problem: "Raw datasets required extensive cleaning and exploration to be useful for predictive modeling.",
+    approach: "Performed in-depth data processing, geospatial analysis, and feature engineering using Python in Google Colab.",
+    toolsSummary: "Python, Jupyter Notebook, Pandas, Geospatial",
+    impact: "Successfully cleaned and engineered features for complex datasets, paving the way for downstream machine learning tasks.",
+    tags: ["Data Science", "Python", "Jupyter", "Analysis"],
+    image: "https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&q=80&w=800",
+    link: "https://github.com/Sharan171111/data-science-internship"
   }
 ];
 

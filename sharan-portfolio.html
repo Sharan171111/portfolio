@@ -152,6 +152,11 @@
     .hero h1 { font-size: clamp(3rem, 8vw, 6rem); font-weight: 900; line-height: 1.1; letter-spacing: -2px; margin-bottom: 24px; text-shadow: 0 10px 30px rgba(0,0,0,0.2); }
     .hero h1 span { background: linear-gradient(135deg, var(--accent), #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .hero p { font-size: clamp(1.1rem, 2vw, 1.5rem); color: var(--text-muted); max-width: 650px; line-height: 1.6; }
+    
+    .scroll-progress {
+      position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--accent), #a78bfa);
+      width: 0%; z-index: 10001; transition: width 0.1s ease-out;
+    }
 
     /* =========================
        RADAR CHART & SKILLS
@@ -277,6 +282,9 @@
 </head>
 <body>
 
+  <!-- Scroll Progress -->
+  <div class="scroll-progress" id="scroll-progress"></div>
+
   <!-- Mesh Gradient Background -->
   <div class="mesh-bg">
     <div class="blob p"></div>
@@ -307,7 +315,7 @@
   <main class="container">
     <!-- Hero Section -->
     <section class="hero reveal">
-      <h1>Sharan K S<br><span>Full Stack Developer</span></h1>
+      <h1><span class="scramble-text" data-text="Sharan K S">Sharan K S</span><br><span>Full Stack Developer</span></h1>
       <p>Architecting robust applications, optimizing complex data pipelines, and crafting seamless digital experiences with modern web technologies.</p>
     </section>
 
@@ -395,11 +403,47 @@
     renderCursor();
 
     const bindCursorHover = () => {
-      document.querySelectorAll('a, button, .project-card, .open-to-work, .radar-point').forEach(el => {
+      document.querySelectorAll('a, button, .project-card, .open-to-work, .radar-point, .scramble-text').forEach(el => {
         el.addEventListener('mouseenter', () => cursorOutline.classList.add('hover'));
         el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hover'));
       });
     };
+
+    /* =========================
+       SCROLL PROGRESS BAR
+       ========================= */
+    const scrollProgress = document.getElementById('scroll-progress');
+    window.addEventListener('scroll', () => {
+      const scrollPx = document.documentElement.scrollTop;
+      const winHeightPx = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      scrollProgress.style.width = `${(scrollPx / winHeightPx) * 100}%`;
+    });
+
+    /* =========================
+       SCRAMBLE TEXT ANIMATION
+       ========================= */
+    const scrambleElements = document.querySelectorAll('.scramble-text');
+    const chars = '!<>-_\\\\/[]{}—=+*^?#________';
+    scrambleElements.forEach(el => {
+      el.addEventListener('mouseenter', scramble);
+      function scramble() {
+        const text = el.getAttribute('data-text');
+        let iterations = 0;
+        clearInterval(el.scrambleInterval);
+        el.scrambleInterval = setInterval(() => {
+          el.innerText = text.split('').map((char, index) => {
+            if(index < iterations) return char;
+            return chars[Math.floor(Math.random() * chars.length)];
+          }).join('');
+          if(iterations >= text.length) {
+             clearInterval(el.scrambleInterval);
+             el.innerText = text;
+          }
+          iterations += 1 / 3;
+        }, 30);
+      }
+      setTimeout(scramble, 500); // Trigger scramble on page load
+    });
 
     /* =========================
        2. CINEMATIC DARK MODE TOGGLE
@@ -515,22 +559,60 @@
        ========================= */
     const projectsData = [
       {
-        title: 'Enterprise Analytics Dashboard', desc: 'Real-time BI pipeline handling 10M+ rows processing with advanced interactive visualizations.',
-        tech: ['React', 'Node.js', 'PostgreSQL'], impact: ['+40% Speed', '10M+ Rows', 'Zero Downtime'],
-        problem: 'The client struggled with slow reporting times on legacy systems, causing delayed business decisions and massive server costs.',
-        solution: 'Architected a highly scalable Node.js microservice architecture with optimized SQL indexing and a responsive, dynamic React frontend.'
+        title: 'Video Sensitivity Analyzer', 
+        desc: 'Full-stack application for content sensitivity analysis using Google Gemini AI and video streaming.',
+        tech: ['JavaScript', 'Gemini AI', 'Streaming'], 
+        impact: ['Real-time Tracking', 'Seamless UX', 'AI Analysis'],
+        problem: 'Manual moderation of video content is slow and error-prone.',
+        solution: 'Integrated Google Gemini AI to analyze video content sensitivity with real-time progress tracking.'
       },
       {
-        title: 'FinTech Payment Gateway', desc: 'Secure, PCI-compliant payment routing system integrating multiple banking APIs seamlessly.',
-        tech: ['Python', 'Django', 'Redis'], impact: ['<200ms Latency', 'PCI DSS', '$5M+ Processed'],
-        problem: 'High latency and unreliability in the existing payment processing logic caused cart abandonment and revenue loss.',
-        solution: 'Implemented async task queues with Redis and Celery, reducing response times significantly and ensuring transaction atomic integrity.'
+        title: 'Data Warehouse Architecture', 
+        desc: 'A comprehensive Data Warehouse solution built with SQL Server, featuring a Medallion Architecture layout.',
+        tech: ['SQL Server', 'TSQL', 'ETL'], 
+        impact: ['Medallion Architecture', 'Star Schema', 'Data Quality'],
+        problem: 'Siloed data systems prevented unified, high-quality business analytics and reporting.',
+        solution: 'Built a multi-layered (Bronze, Silver, Gold) Medallion Architecture with complete ETL pipelines using Stored Procedures.'
       },
       {
-        title: 'AI Workflow Automator', desc: 'LLM-powered internal tool to automatically parse, route, and draft responses to emails.',
-        tech: ['Next.js', 'OpenAI API', 'Tailwind'], impact: ['-15hrs/week', '98% Accuracy', 'Seamless UX'],
-        problem: 'Support teams spent 15+ hours weekly manually triaging incoming requests, leading to burnout and slow response SLAs.',
-        solution: 'Integrated GPT-4 to auto-classify and draft responses. Wrapped in a beautiful, accessible Next.js interface for human-in-the-loop validation.'
+        title: 'Video Analyzer Platform', 
+        desc: 'A full-stack application for uploading, processing, and analyzing video content.',
+        tech: ['Python', 'FastAPI', 'React', 'MongoDB'], 
+        impact: ['Socket.IO', 'Real-time Updates', 'Full-stack'],
+        problem: 'Processing large video files efficiently while keeping the user informed of the progress was challenging.',
+        solution: 'Built a decoupled architecture using FastAPI, React, and Socket.IO for real-time progress updates.'
+      },
+      {
+        title: 'Phishing Website Detection', 
+        desc: 'Detects phishing websites using machine learning and the XGBoost algorithm based on URL features.',
+        tech: ['Python', 'XGBoost', 'Machine Learning'], 
+        impact: ['High Accuracy', 'URL-based Features', 'Security'],
+        problem: 'Users frequently fall victim to sophisticated phishing attacks that are hard to detect manually.',
+        solution: 'Trained an XGBoost machine learning model on URL-based features to predict legitimacy with high accuracy.'
+      },
+      {
+        title: 'Quantum Image Steganography', 
+        desc: 'A Flask web application that securely hides data in images using simulated quantum rotation techniques.',
+        tech: ['Python', 'Flask', 'HTML'], 
+        impact: ['Secure Data', 'QR Generation', 'PSNR Analysis'],
+        problem: 'Traditional steganography methods are becoming vulnerable to advanced computational attacks.',
+        solution: 'Implemented simulated quantum rotation techniques for high-security data hiding, featuring QR code generation.'
+      },
+      {
+        title: 'Netflix Power BI EDA', 
+        desc: 'Exploratory Data Analysis on the Netflix dataset using Power BI for visualizing trends.',
+        tech: ['Power BI', 'Data Analytics', 'Dashboards'], 
+        impact: ['Visual Insights', 'Content Trends', 'Interactive'],
+        problem: 'Understanding content distribution and trends on Netflix required digesting massive CSV datasets.',
+        solution: 'Developed an interactive Power BI dashboard to visualize Netflix library data and identify key content trends.'
+      },
+      {
+        title: 'Data Science Analysis', 
+        desc: 'Data exploration, geospatial analysis, and feature engineering tasks performed in Google Colab.',
+        tech: ['Python', 'Jupyter', 'Pandas'], 
+        impact: ['Geospatial Analysis', 'Feature Engineering', 'Data Preprocessing'],
+        problem: 'Raw datasets required extensive cleaning and exploration to be useful for predictive modeling.',
+        solution: 'Performed in-depth data processing, geospatial analysis, and feature engineering using Python.'
       }
     ];
 
