@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sharan K S | Senior Full Stack Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    /* =========================
+       CSS VARIABLES & THEMES
+       ========================= */
+    :root[data-theme="dark"] {
+      --bg-color: #050505;
+      --text-main: #F3F4F6;
+      --text-muted: #9CA3AF;
+      --accent: #4F8EF7;
+      --nav-bg: rgba(5, 5, 5, 0.7);
+      --card-bg: rgba(255, 255, 255, 0.02);
+      --card-border: rgba(255, 255, 255, 0.05);
+      --card-hover: rgba(79, 142, 247, 0.2);
+      --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+    :root[data-theme="light"] {
+      --bg-color: #FAFAFA;
+      --text-main: #111827;
+      --text-muted: #4B5563;
+      --accent: #4F8EF7;
+      --nav-bg: rgba(250, 250, 250, 0.7);
+      --card-bg: rgba(0, 0, 0, 0.02);
+      --card-border: rgba(0, 0, 0, 0.05);
+      --card-hover: rgba(79, 142, 247, 0.3);
+      --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    @media (pointer: fine) { * { cursor: none !important; } }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      overflow-x: hidden;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+
+    ::selection { background: rgba(79, 142, 247, 0.3); color: var(--text-main); }
+
+    /* =========================
+       CUSTOM CURSOR
+       ========================= */
+    .cursor-dot {
+      width: 6px; height: 6px; background: var(--accent); border-radius: 50%;
+      position: fixed; pointer-events: none; z-index: 10000;
+      transform: translate(-50%, -50%); transition: transform 0.1s;
+    }
+    .cursor-outline {
+      width: 30px; height: 30px; border: 1px solid var(--text-muted); border-radius: 50%;
+      position: fixed; pointer-events: none; z-index: 9999;
+      transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, border-color 0.3s, background-color 0.3s;
+    }
+    .cursor-outline.hover {
+      width: 50px; height: 50px; border-color: var(--accent); background: rgba(79, 142, 247, 0.1);
+    }
+    @media (max-width: 768px) { .cursor-dot, .cursor-outline { display: none; } }
+
+    /* =========================
+       MESH GRADIENT BACKGROUND
+       ========================= */
+    .mesh-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; overflow: hidden; pointer-events: none; }
+    .blob { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.5; }
+    :root[data-theme="light"] .blob { opacity: 0.3; }
+    
+    .blob.p { width: 45vw; height: 45vw; background: #6b21a8; top: -10vw; left: -10vw; animation: drift1 25s infinite alternate ease-in-out; }
+    .blob.b { width: 50vw; height: 50vw; background: var(--accent); top: 30vh; right: -15vw; animation: drift2 28s infinite alternate ease-in-out; }
+    .blob.t { width: 40vw; height: 40vw; background: #0d9488; bottom: -15vw; left: 15vw; animation: drift3 22s infinite alternate ease-in-out; }
+    .blob.n { width: 40vw; height: 40vw; background: #1e3a8a; top: 10vh; left: 25vw; animation: drift4 30s infinite alternate ease-in-out; }
+    
+    @keyframes drift1 { 100% { transform: translate(15vw, 15vh); } }
+    @keyframes drift2 { 100% { transform: translate(-20vw, 10vh); } }
+    @keyframes drift3 { 100% { transform: translate(10vw, -20vh); } }
+    @keyframes drift4 { 100% { transform: translate(-15vw, 15vh); } }
+
+    /* =========================
+       NAVIGATION & BADGES
+       ========================= */
+    nav {
+      position: fixed; top: 0; width: 100%; padding: 24px 5%;
+      display: flex; justify-content: space-between; align-items: center;
+      background: var(--nav-bg); backdrop-filter: blur(16px); z-index: 100;
+      border-bottom: 1px solid var(--card-border); transition: background 0.4s, border-color 0.4s;
+    }
+    .logo { font-size: 20px; font-weight: 900; letter-spacing: -1px; }
+    .logo span { color: var(--accent); }
+    
+    .nav-actions { display: flex; align-items: center; gap: 16px; }
+    
+    .open-to-work {
+      display: flex; align-items: center; gap: 8px;
+      padding: 6px 12px; border-radius: 20px;
+      background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.2);
+      color: #22c55e; font-size: 13px; font-weight: 600;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); overflow: hidden; white-space: nowrap; max-width: 145px;
+    }
+    .open-to-work:hover { max-width: 320px; padding: 6px 16px; background: rgba(34, 197, 94, 0.15); }
+    .open-to-work .text-expand { display: inline-block; opacity: 0; transition: opacity 0.3s; width: 0; }
+    .open-to-work:hover .text-expand { opacity: 1; width: auto; margin-left: 4px; }
+    
+    .pulse-dot {
+      width: 8px; height: 8px; background: #22c55e; border-radius: 50%;
+      position: relative; flex-shrink: 0;
+    }
+    .pulse-dot::after, .pulse-dot::before {
+      content: ''; position: absolute; top: -4px; left: -4px; right: -4px; bottom: -4px;
+      border-radius: 50%; border: 1px solid #22c55e;
+      animation: pulseAnim 2s linear infinite; opacity: 0;
+    }
+    .pulse-dot::after { animation-delay: 1s; }
+    @keyframes pulseAnim { 0% { transform: scale(0.5); opacity: 1; } 100% { transform: scale(2.5); opacity: 0; } }
+    
+    .theme-toggle {
+      background: transparent; border: 1px solid var(--card-border); border-radius: 50%;
+      width: 40px; height: 40px; display: flex; justify-content: center; align-items: center;
+      color: var(--text-main); transition: all 0.3s;
+    }
+    .theme-toggle:hover { background: var(--card-bg); border-color: var(--accent); color: var(--accent); }
+
+    /* Cinematic Sweep Transition */
+    .theme-sweep {
+      position: fixed; border-radius: 50%; pointer-events: none; z-index: 9998;
+      width: 1px; height: 1px; transform: translate(-50%, -50%);
+      transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+    }
+    .theme-sweep.light { background: #FAFAFA; }
+    .theme-sweep.dark { background: #050505; }
+    .theme-sweep.expand { transform: translate(-50%, -50%) scale(4000); }
+
+    /* =========================
+       LAYOUT & SCROLL REVEAL
+       ========================= */
+    .container { max-width: 1200px; margin: 0 auto; padding: 140px 5% 100px; }
+    
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s ease-out; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .stagger-container .reveal-child { opacity: 0; transform: translateY(30px); transition: all 0.6s ease-out; }
+    .stagger-container.visible .reveal-child { opacity: 1; transform: translateY(0); }
+
+    /* =========================
+       HERO SECTION
+       ========================= */
+    .hero { min-height: 70vh; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+    .hero h1 { font-size: clamp(3rem, 8vw, 6rem); font-weight: 900; line-height: 1.1; letter-spacing: -2px; margin-bottom: 24px; text-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+    .hero h1 span { background: linear-gradient(135deg, var(--accent), #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { font-size: clamp(1.1rem, 2vw, 1.5rem); color: var(--text-muted); max-width: 650px; line-height: 1.6; }
+
+    /* =========================
+       RADAR CHART & SKILLS
+       ========================= */
+    .skills-section { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin: 120px 0; }
+    @media (max-width: 800px) { .skills-section { grid-template-columns: 1fr; gap: 40px; } }
+    
+    .tech-stack { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
+    .tech-pill {
+      font-size: 13px; font-weight: 600; padding: 8px 16px; border-radius: 12px;
+      background: var(--card-bg); color: var(--text-main); border: 1px solid var(--card-border);
+      transition: all 0.3s;
+    }
+    .tech-pill:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    .radar-container { position: relative; width: 100%; max-width: 450px; aspect-ratio: 1; margin: 0 auto; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
+    svg.radar { width: 100%; height: 100%; overflow: visible; }
+    .radar-grid { stroke: var(--card-border); stroke-width: 1; fill: none; transition: stroke 0.4s; }
+    .radar-axis { stroke: var(--card-border); stroke-width: 1; transition: stroke 0.4s; stroke-dasharray: 4; }
+    .radar-poly { 
+      fill: rgba(79, 142, 247, 0.15); stroke: var(--accent); stroke-width: 2;
+      transition: all 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .radar-point {
+      fill: var(--bg-color); stroke: var(--accent); stroke-width: 2.5;
+      transition: all 1.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s, fill 0.2s; pointer-events: auto;
+    }
+    .radar-point:hover { fill: var(--accent); transform: scale(1.6); transform-origin: center; }
+    .radar-label { fill: var(--text-muted); font-size: 13px; font-weight: 700; text-anchor: middle; transition: fill 0.4s; }
+
+    /* =========================
+       PROJECTS 3D CARDS
+       ========================= */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 32px; margin-top: 60px; }
+    .project-card {
+      position: relative; background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: 24px; padding: 40px; overflow: hidden;
+      transform-style: preserve-3d; transition: border-color 0.3s ease;
+      box-shadow: var(--glass-shadow); backdrop-filter: blur(10px);
+    }
+    .project-card:hover { border-color: var(--card-hover); }
+    .project-card .shine {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 10; pointer-events: none;
+      transition: opacity 0.3s; opacity: 0; mix-blend-mode: overlay;
+    }
+    .project-card:hover .shine { opacity: 1; }
+    .project-card h3 { font-size: 24px; font-weight: 800; margin-bottom: 12px; transform: translateZ(30px); letter-spacing: -0.5px; }
+    .project-card p { color: var(--text-muted); line-height: 1.6; margin-bottom: 32px; transform: translateZ(20px); font-size: 15px; }
+    .project-card .tech-stack { transform: translateZ(25px); margin-top: 0; }
+
+    /* =========================
+       FLOATING WIDGETS
+       ========================= */
+    .viewer-widget {
+      position: fixed; bottom: 32px; left: 32px; z-index: 90;
+      background: var(--nav-bg); backdrop-filter: blur(16px); border: 1px solid var(--card-border);
+      padding: 12px 20px; border-radius: 30px; display: flex; align-items: center; gap: 12px;
+      font-size: 13px; font-weight: 600; color: var(--text-main); box-shadow: var(--glass-shadow);
+      transition: opacity 0.8s ease, border-color 0.4s; pointer-events: none;
+    }
+    .viewer-widget span { color: var(--accent); font-weight: 800; }
+    
+    .resume-widget {
+      position: fixed; bottom: 32px; right: 32px; z-index: 90; display: flex; flex-direction: column; align-items: flex-end; gap: 8px;
+    }
+    .resume-btn {
+      background: var(--accent); color: #fff; border: none; padding: 0 28px;
+      border-radius: 30px; font-size: 15px; font-weight: 700; font-family: inherit;
+      box-shadow: 0 10px 30px -5px rgba(79, 142, 247, 0.5); transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; gap: 10px; width: 220px; height: 56px;
+    }
+    .resume-btn:hover { transform: translateY(-4px); box-shadow: 0 15px 35px -5px rgba(79, 142, 247, 0.6); }
+    .resume-btn .progress {
+      position: absolute; left: 0; top: 0; bottom: 0; background: #2563EB; width: 0; z-index: 1; transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .resume-btn.downloading .progress { width: 100%; }
+    .resume-btn span, .resume-btn svg { position: relative; z-index: 2; transition: opacity 0.2s; }
+    .resume-btn.success { background: #10B981; box-shadow: 0 10px 30px -5px rgba(16, 185, 129, 0.5); }
+    .resume-stats { font-size: 11px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
+    .resume-stats span { color: var(--text-main); font-weight: 800; }
+
+    /* =========================
+       MODALS
+       ========================= */
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(16px);
+      z-index: 100000; display: flex; justify-content: center; align-items: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+    }
+    .modal-overlay.active { opacity: 1; pointer-events: auto; }
+    .modal-content {
+      background: var(--bg-color); border: 1px solid var(--card-border); border-radius: 24px;
+      padding: 48px; max-width: 800px; width: 90%; max-height: 90vh; overflow-y: auto;
+      transform: scale(0.95) translateY(20px); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); position: relative;
+    }
+    .modal-overlay.active .modal-content { transform: scale(1) translateY(0); }
+    .modal-close {
+      position: absolute; top: 24px; right: 24px; background: rgba(128,128,128,0.1); border: none;
+      color: var(--text-muted); font-size: 20px; width: 40px; height: 40px; border-radius: 50%;
+      display: flex; justify-content: center; align-items: center; transition: all 0.2s;
+    }
+    .modal-close:hover { color: var(--text-main); background: rgba(128,128,128,0.2); }
+    
+    .modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 40px 0; }
+    @media (max-width: 600px) { .modal-grid { grid-template-columns: 1fr; gap: 24px; } }
+    .modal-section h4 { color: var(--accent); margin-bottom: 12px; font-weight: 800; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; }
+    .modal-section p { color: var(--text-muted); line-height: 1.7; font-size: 15px; }
+
+    .modal-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-top: 32px; }
+    .metric-box { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 24px; text-align: center; }
+    .metric-value { font-size: 36px; font-weight: 900; color: var(--text-main); margin-bottom: 8px; letter-spacing: -1px; }
+    .metric-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+
+    /* Secret Modal Theme Override */
+    #easter-egg-modal .modal-content {
+      background: linear-gradient(145deg, #0f172a, #1e293b); text-align: center;
+      border-color: rgba(79, 142, 247, 0.4); color: #fff; max-width: 450px;
+      box-shadow: 0 0 50px rgba(79, 142, 247, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Mesh Gradient Background -->
+  <div class="mesh-bg">
+    <div class="blob p"></div>
+    <div class="blob b"></div>
+    <div class="blob t"></div>
+    <div class="blob n"></div>
+  </div>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-outline" id="cursor-outline"></div>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">SHARAN<span>.</span></div>
+    <div class="nav-actions">
+      <div class="open-to-work">
+        <div class="pulse-dot"></div>
+        Open to Work <span class="text-expand">& Freelance roles</span>
+      </div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode">
+        <!-- Default Dark Mode Icon -->
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><path stroke-linecap="round" stroke-linejoin="round" d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
+      </button>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- Hero Section -->
+    <section class="hero reveal">
+      <h1>Sharan K S<br><span>Full Stack Developer</span></h1>
+      <p>Architecting robust applications, optimizing complex data pipelines, and crafting seamless digital experiences with modern web technologies.</p>
+    </section>
+
+    <!-- Radar Skills Section -->
+    <section class="skills-section reveal">
+      <div>
+        <h2 style="font-size: 2.5rem; margin-bottom: 24px; font-weight: 800; letter-spacing: -1px;">Technical Arsenal</h2>
+        <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 32px; font-size: 1.1rem;">
+          My core competencies mapped out. I focus heavily on the JavaScript ecosystem while maintaining strong backend and database optimization skills. 
+          The intersection of performant UI and scalable APIs is where I thrive.
+        </p>
+        <div class="tech-stack stagger-container" id="skills-pills">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+      <div class="radar-container" id="radar-container">
+        <svg class="radar" viewBox="0 0 300 300">
+          <g class="radar-grid-group"></g>
+          <g class="radar-axes-group"></g>
+          <polygon class="radar-poly" points="150,150 150,150 150,150 150,150 150,150 150,150"></polygon>
+          <g class="radar-points-group"></g>
+          <g class="radar-labels-group"></g>
+        </svg>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section style="margin-top: 160px;">
+      <h2 class="reveal" style="font-size: 2.5rem; margin-bottom: 24px; font-weight: 800; letter-spacing: -1px;">Selected Works</h2>
+      <div class="projects-grid stagger-container" id="projects-grid">
+        <!-- JS Injected -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Floating Widgets -->
+  <div class="viewer-widget" id="viewer-widget">
+    <div class="pulse-dot" style="width: 6px; height: 6px;"></div>
+    <span id="viewer-count">3</span> recruiters viewing now 👀
+  </div>
+
+  <div class="resume-widget">
+    <button class="resume-btn" id="resume-btn">
+      <div class="progress"></div>
+      <svg class="dl-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+      <svg class="check-icon" style="display:none;" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+      <span class="btn-text">Download Resume</span>
+    </button>
+    <div class="resume-stats"><span id="dl-count-display">0</span> recruiters downloaded</div>
+  </div>
+
+  <!-- Project Modal Base -->
+  <div class="modal-overlay" id="project-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="close-project">✕</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <script>
+    /* =========================
+       1. CUSTOM CURSOR
+       ========================= */
+    const cursorDot = document.getElementById('cursor-dot');
+    const cursorOutline = document.getElementById('cursor-outline');
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let outlineX = mouseX;
+    let outlineY = mouseY;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursorDot.style.transform = `translate(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%))`;
+    });
+
+    const renderCursor = () => {
+      outlineX += (mouseX - outlineX) * 0.12; // Lerp
+      outlineY += (mouseY - outlineY) * 0.12;
+      cursorOutline.style.transform = `translate(calc(${outlineX}px - 50%), calc(${outlineY}px - 50%))`;
+      requestAnimationFrame(renderCursor);
+    };
+    renderCursor();
+
+    const bindCursorHover = () => {
+      document.querySelectorAll('a, button, .project-card, .open-to-work, .radar-point').forEach(el => {
+        el.addEventListener('mouseenter', () => cursorOutline.classList.add('hover'));
+        el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hover'));
+      });
+    };
+
+    /* =========================
+       2. CINEMATIC DARK MODE TOGGLE
+       ========================= */
+    const themeToggle = document.getElementById('theme-toggle');
+    const sunIcon = '<svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><path stroke-linecap="round" stroke-linejoin="round" d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>';
+    const moonIcon = '<svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>';
+    
+    // Set initial icon based on root
+    const isInitDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    themeToggle.innerHTML = isInitDark ? sunIcon : moonIcon;
+
+    themeToggle.addEventListener('click', () => {
+      const root = document.documentElement;
+      const isDark = root.getAttribute('data-theme') === 'dark';
+      const newTheme = isDark ? 'light' : 'dark';
+      
+      const sweep = document.createElement('div');
+      sweep.className = `theme-sweep ${newTheme}`;
+      const rect = themeToggle.getBoundingClientRect();
+      sweep.style.left = (rect.left + rect.width / 2) + 'px';
+      sweep.style.top = (rect.top + rect.height / 2) + 'px';
+      
+      document.body.appendChild(sweep);
+      
+      themeToggle.innerHTML = isDark ? moonIcon : sunIcon;
+
+      requestAnimationFrame(() => sweep.classList.add('expand'));
+
+      setTimeout(() => {
+        root.setAttribute('data-theme', newTheme);
+        setTimeout(() => sweep.remove(), 100);
+      }, 700);
+    });
+
+    /* =========================
+       3. ANIMATED SKILLS RADAR CHART
+       ========================= */
+    const skills = [
+      { label: 'JavaScript', val: 90 }, { label: 'React', val: 85 },
+      { label: 'Node.js', val: 80 }, { label: 'Python', val: 75 },
+      { label: 'SQL', val: 70 }, { label: 'DevOps', val: 65 }
+    ];
+    
+    const pillsContainer = document.getElementById('skills-pills');
+    skills.forEach((s, i) => {
+      const pill = document.createElement('div');
+      pill.className = 'tech-pill reveal-child';
+      pill.style.transitionDelay = `${i * 100}ms`;
+      pill.innerText = s.label;
+      pillsContainer.appendChild(pill);
+    });
+
+    const radarR = 100, radarCX = 150, radarCY = 150;
+    const gridGroup = document.querySelector('.radar-grid-group');
+    const axesGroup = document.querySelector('.radar-axes-group');
+    const pointsGroup = document.querySelector('.radar-points-group');
+    const labelsGroup = document.querySelector('.radar-labels-group');
+    const poly = document.querySelector('.radar-poly');
+
+    [0.33, 0.66, 1].forEach(level => {
+      let pts = [];
+      for(let i=0; i<6; i++) {
+        let angle = (Math.PI / 3) * i - Math.PI / 2;
+        pts.push(`${radarCX + radarR * level * Math.cos(angle)},${radarCY + radarR * level * Math.sin(angle)}`);
+      }
+      gridGroup.innerHTML += `<polygon class="radar-grid" points="${pts.join(' ')}"></polygon>`;
+    });
+
+    const targetPoints = [];
+    skills.forEach((s, i) => {
+      let angle = (Math.PI / 3) * i - Math.PI / 2;
+      let ex = radarCX + radarR * Math.cos(angle);
+      let ey = radarCY + radarR * Math.sin(angle);
+      axesGroup.innerHTML += `<line class="radar-axis" x1="${radarCX}" y1="${radarCY}" x2="${ex}" y2="${ey}"></line>`;
+      
+      let lx = radarCX + (radarR + 25) * Math.cos(angle);
+      let ly = radarCY + (radarR + 20) * Math.sin(angle);
+      labelsGroup.innerHTML += `<text class="radar-label" x="${lx}" y="${ly}" dominant-baseline="middle">${s.label}</text>`;
+      
+      let px = radarCX + radarR * (s.val / 100) * Math.cos(angle);
+      let py = radarCY + radarR * (s.val / 100) * Math.sin(angle);
+      targetPoints.push(`${px},${py}`);
+      pointsGroup.innerHTML += `<circle class="radar-point" cx="${radarCX}" cy="${radarCY}" r="5"><title>${s.label}: ${s.val}%</title></circle>`;
+    });
+
+    /* =========================
+       4. SCROLL REVEAL (INTERSECTION OBSERVER)
+       ========================= */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          if (entry.target.id === 'radar-container') {
+            poly.setAttribute('points', targetPoints.join(' '));
+            const circles = document.querySelectorAll('.radar-point');
+            targetPoints.forEach((pt, i) => {
+              let [px, py] = pt.split(',');
+              circles[i].setAttribute('cx', px);
+              circles[i].setAttribute('cy', py);
+            });
+            observer.unobserve(entry.target);
+          }
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal, .stagger-container').forEach(el => observer.observe(el));
+    observer.observe(document.getElementById('radar-container'));
+
+    /* =========================
+       5. 3D TILT PROJECT CARDS & MODALS
+       ========================= */
+    const projectsData = [
+      {
+        title: 'Enterprise Analytics Dashboard', desc: 'Real-time BI pipeline handling 10M+ rows processing with advanced interactive visualizations.',
+        tech: ['React', 'Node.js', 'PostgreSQL'], impact: ['+40% Speed', '10M+ Rows', 'Zero Downtime'],
+        problem: 'The client struggled with slow reporting times on legacy systems, causing delayed business decisions and massive server costs.',
+        solution: 'Architected a highly scalable Node.js microservice architecture with optimized SQL indexing and a responsive, dynamic React frontend.'
+      },
+      {
+        title: 'FinTech Payment Gateway', desc: 'Secure, PCI-compliant payment routing system integrating multiple banking APIs seamlessly.',
+        tech: ['Python', 'Django', 'Redis'], impact: ['<200ms Latency', 'PCI DSS', '$5M+ Processed'],
+        problem: 'High latency and unreliability in the existing payment processing logic caused cart abandonment and revenue loss.',
+        solution: 'Implemented async task queues with Redis and Celery, reducing response times significantly and ensuring transaction atomic integrity.'
+      },
+      {
+        title: 'AI Workflow Automator', desc: 'LLM-powered internal tool to automatically parse, route, and draft responses to emails.',
+        tech: ['Next.js', 'OpenAI API', 'Tailwind'], impact: ['-15hrs/week', '98% Accuracy', 'Seamless UX'],
+        problem: 'Support teams spent 15+ hours weekly manually triaging incoming requests, leading to burnout and slow response SLAs.',
+        solution: 'Integrated GPT-4 to auto-classify and draft responses. Wrapped in a beautiful, accessible Next.js interface for human-in-the-loop validation.'
+      }
+    ];
+
+    const projectsGrid = document.getElementById('projects-grid');
+    const modalOverlay = document.getElementById('project-modal');
+    const modalBody = document.getElementById('modal-body');
+    const closeProject = document.getElementById('close-project');
+
+    projectsData.forEach((p, i) => {
+      const card = document.createElement('div');
+      card.className = 'project-card reveal-child';
+      card.style.transitionDelay = `${i * 150}ms`;
+      card.innerHTML = `
+        <div class="shine"></div>
+        <h3>${p.title}</h3>
+        <p>${p.desc}</p>
+        <div class="tech-stack">${p.tech.map(t => `<span class="tech-pill">${t}</span>`).join('')}</div>
+      `;
+      
+      // 3D Tilt Effect
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const cX = rect.width / 2;
+        const cY = rect.height / 2;
+        const rotX = ((y - cY) / cY) * -15;
+        const rotY = ((x - cX) / cX) * 15;
+        
+        card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-5px)`;
+        card.querySelector('.shine').style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.15) 0%, transparent 60%)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = `perspective(1000px) rotateX(0) rotateY(0) translateY(0)`;
+        card.querySelector('.shine').style.background = `none`;
+      });
+
+      // Open Modal
+      card.addEventListener('click', () => {
+        modalBody.innerHTML = `
+          <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 16px; letter-spacing:-1px;">${p.title}</h2>
+          <div class="tech-stack" style="margin-bottom: 32px;">${p.tech.map(t => `<span class="tech-pill">${t}</span>`).join('')}</div>
+          
+          <div class="modal-grid">
+            <div class="modal-section"><h4>The Problem</h4><p>${p.problem}</p></div>
+            <div class="modal-section"><h4>The Solution</h4><p>${p.solution}</p></div>
+          </div>
+          
+          <div class="modal-metrics">
+            ${p.impact.map(imp => {
+              let [val, ...labelArr] = imp.split(' ');
+              return `<div class="metric-box"><div class="metric-value">${val}</div><div class="metric-label">${labelArr.join(' ')}</div></div>`;
+            }).join('')}
+          </div>
+        `;
+        modalOverlay.classList.add('active');
+      });
+      projectsGrid.appendChild(card);
+    });
+
+    closeProject.addEventListener('click', () => modalOverlay.classList.remove('active'));
+    window.addEventListener('keydown', e => { if(e.key === 'Escape') modalOverlay.classList.remove('active'); });
+
+    // Re-bind cursor for new dynamic elements
+    bindCursorHover();
+
+    /* =========================
+       6. LIVE VIEWER WIDGET
+       ========================= */
+    const viewersEl = document.getElementById('viewer-count');
+    const viewerWidget = document.getElementById('viewer-widget');
+    const updateViewers = () => {
+      viewerWidget.style.opacity = '0.3';
+      setTimeout(() => {
+        viewersEl.innerText = Math.floor(Math.random() * 5) + 2; // 2 to 6
+        viewerWidget.style.opacity = '1';
+      }, 400);
+      setTimeout(updateViewers, Math.random() * 4000 + 8000); // 8-12s
+    };
+    setTimeout(updateViewers, 4000);
+
+    /* =========================
+       7. ANIMATED RESUME DOWNLOAD
+       ========================= */
+    const resumeBtn = document.getElementById('resume-btn');
+    const dlCountDisplay = document.getElementById('dl-count-display');
+    const dlIcon = resumeBtn.querySelector('.dl-icon');
+    const checkIcon = resumeBtn.querySelector('.check-icon');
+    const btnText = resumeBtn.querySelector('.btn-text');
+    
+    let dlCount = parseInt(localStorage.getItem('resumeDlCount') || '142');
+    dlCountDisplay.innerText = dlCount;
+
+    resumeBtn.addEventListener('click', () => {
+      if(resumeBtn.classList.contains('downloading') || resumeBtn.classList.contains('success')) return;
+      
+      resumeBtn.classList.add('downloading');
+      btnText.innerText = "Downloading...";
+      
+      setTimeout(() => {
+        resumeBtn.classList.remove('downloading');
+        resumeBtn.classList.add('success');
+        dlIcon.style.display = 'none';
+        checkIcon.style.display = 'block';
+        btnText.innerText = "Downloaded!";
+        
+        dlCount++;
+        localStorage.setItem('resumeDlCount', dlCount);
+        dlCountDisplay.innerText = dlCount;
+
+        window.open('https://drive.google.com/uc?export=download&id=1Ua1qQKpt9ec7VbKO7AaHUIqFMlHD_d5c', '_blank');
+
+        setTimeout(() => {
+          resumeBtn.classList.remove('success');
+          dlIcon.style.display = 'block';
+          checkIcon.style.display = 'none';
+          btnText.innerText = "Download Resume";
+        }, 3000);
+      }, 1500);
+    });
+
+    /* =========================
+       8. SECRET EASTER EGG
+       ========================= */
+    const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+    const hiremeCode = ['h', 'i', 'r', 'e', 'm', 'e'];
+    let kIdx = 0, hIdx = 0;
+
+    const triggerEasterEgg = () => {
+      // Confetti Explosion
+      var end = Date.now() + 3000;
+      (function frame() {
+        confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#4F8EF7', '#8b5cf6', '#ec4899'] });
+        confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#4F8EF7', '#8b5cf6', '#ec4899'] });
+        if (Date.now() < end) requestAnimationFrame(frame);
+      }());
+
+      // Easter Egg Modal
+      const eeOverlay = document.createElement('div');
+      eeOverlay.className = 'modal-overlay active';
+      eeOverlay.id = 'easter-egg-modal';
+      eeOverlay.innerHTML = `
+        <div class="modal-content">
+          <div style="font-size: 64px; margin-bottom: 20px; animation: pulseAnim 2s infinite alternate;">🚀</div>
+          <h2 style="font-size: 36px; font-weight: 900; margin-bottom: 8px; letter-spacing:-1px;">Sharan K S</h2>
+          <h3 style="font-size: 18px; color: #94a3b8; margin-bottom: 32px;">Full Stack Developer</h3>
+          
+          <div style="background: rgba(0,0,0,0.4); border-radius: 16px; padding: 24px; margin-bottom: 32px; border: 1px solid rgba(255,255,255,0.05);">
+            <p style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #64748b; margin-bottom: 16px; font-weight: 800;">Core Expertise</p>
+            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+              <span class="tech-pill">React.js</span>
+              <span class="tech-pill">Node.js</span>
+              <span class="tech-pill">SQL & Python</span>
+            </div>
+          </div>
+          
+          <a href="https://drive.google.com/uc?export=download&id=1Ua1qQKpt9ec7VbKO7AaHUIqFMlHD_d5c" target="_blank" style="display: block; background: #2563eb; color: white; text-decoration: none; padding: 16px; border-radius: 16px; font-weight: 800; font-size:16px; transition: transform 0.2s; margin-bottom: 16px;">Download Resume</a>
+          <button id="close-ee" style="background: transparent; border: none; color: #64748b; font-size: 14px; cursor: pointer; transition: color 0.2s;">Close (Esc)</button>
+        </div>
+      `;
+      document.body.appendChild(eeOverlay);
+      
+      const closeEE = () => { eeOverlay.classList.remove('active'); setTimeout(()=>eeOverlay.remove(), 400); };
+      document.getElementById('close-ee').addEventListener('click', closeEE);
+      
+      const escListener = (e) => { if(e.key === 'Escape') { closeEE(); window.removeEventListener('keydown', escListener); } };
+      window.addEventListener('keydown', escListener);
+    };
+
+    window.addEventListener('keydown', e => {
+      const activeEl = document.activeElement;
+      if(activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA')) return;
+
+      // Hireme Logic
+      if(e.key.toLowerCase() === hiremeCode[hIdx]) {
+        hIdx++; if(hIdx === hiremeCode.length) { triggerEasterEgg(); hIdx = 0; }
+      } else { hIdx = e.key.toLowerCase() === 'h' ? 1 : 0; }
+
+      // Konami Logic
+      const isKonamiMatch = konamiCode[kIdx].length > 1 ? e.key === konamiCode[kIdx] : e.key.toLowerCase() === konamiCode[kIdx];
+      if(isKonamiMatch) {
+        kIdx++; if(kIdx === konamiCode.length) { triggerEasterEgg(); kIdx = 0; }
+      } else { kIdx = e.key === 'ArrowUp' ? 1 : 0; }
+    });
+  </script>
+</body>
+</html>
