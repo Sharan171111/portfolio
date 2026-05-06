@@ -509,7 +509,7 @@ const Contact = ({ theme }: { theme: 'dark' | 'light' }) => {
           </h2>
 
           <p className={`${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'} text-lg md:text-xl mb-16 max-w-2xl mx-auto font-medium`}>
-            Open to Business Analyst and Data Analyst opportunities where I can support dashboards, reporting, process improvement, and insight-driven decision making.
+            Bridging the gap between software engineering and analytics. Open to Software Developer and Business/Data Analyst opportunities where I can build robust applications, support reporting dashboards, and drive insight-driven decision making.
           </p>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
